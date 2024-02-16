@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.upload-space {
+  margin-bottom: 20px; /* Adjust the margin-bottom as needed */
+}
+
+/* Add this CSS to your stylesheet or within your component's styling */
+.user-friendly-button {
+  font-size: 9px; /* Set the font size to make it smaller */
+  padding: 8px 12px; /* Adjust padding for better sizing */
+  background-color: #3498db; /* Set your desired background color */
+  color: #fff; /* Set the text color to make it visible on the background */
+  border: none; /* Remove border for a clean look */
+  cursor: pointer; /* Add cursor pointer for better UX */
+  border-radius: 4px; /* Add border-radius for rounded corners */
+  transition: background-color 0.3s ease; /* Add a smooth transition effect */
+}
+
+.user-friendly-button:hover {
+  background-color: #2980b9; /* Change background color on hover */
+}
