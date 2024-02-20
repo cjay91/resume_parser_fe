@@ -34,7 +34,7 @@ class ParentComponent extends Component {
         <div className="upload-space"></div>
         <div style={{ textAlign: 'center', marginTop: '20px' }}>
           <button className="user-friendly-button" onClick={this.handleButtonClick}>
-            Click Me
+            Rank CVs
           </button>
         </div>
         {showDataTable && <DataTable/>} {/* Conditionally render DataTable based on showDataTable state */}

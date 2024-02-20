@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const YourReactComponent = () => {
     const [cvScoreData, setCvScoreData] = useState([]);
@@ -20,9 +21,33 @@ const YourReactComponent = () => {
         fetchData();
     }, []); // Empty dependency array ensures the effect runs once on mount
 
-    const handleDownload = (filename) => {
-        // Implement your download logic here, e.g., open a new window or initiate a download
-        alert(`Downloading file: ${filename}`);
+
+
+    const downloadFile = async (filename) => {
+        try {
+            // Encode the filename to ensure safe URL usage
+            const encodedFilename = encodeURIComponent(filename);
+    
+            // Make a GET request with the filename as a parameter
+            const response = await axios.get(`http://127.0.0.1:5000/send_file_data/${encodedFilename}`, {
+                responseType: 'arraybuffer', // Important to handle binary data
+            });
+    
+            const blob = new Blob([response.data], { type: 'application/pdf' });
+            // Create a data URL from the Blob
+            const dataUrl = URL.createObjectURL(blob);
+
+            // Open the PDF in a new tab
+            const newTab = window.open(dataUrl, '_blank');
+
+            // Check if the new tab is blocked by the browser's popup blocker
+            if (!newTab || newTab.closed) {
+                alert('The browser blocked opening a new tab. Please check your popup blocker settings.');
+            }
+    
+        } catch (error) {
+            console.error("Error downloading file:", error);
+        }
     };
 
     return (
@@ -34,7 +59,7 @@ const YourReactComponent = () => {
                     <tr key='id' style={{ backgroundColor: '#f2f2f2' }}>
                         <td>Rank</td>
                         <td>Filename</td>
-                        <td>Download</td>
+                        <td>View PDF</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,8 +70,8 @@ const YourReactComponent = () => {
                                 <td>{index + 1}</td>
                                 <td>{record.Filename}</td>
                                 <td>
-                                    <button className="user-friendly-button" onClick={() => handleDownload(record.Filename)}>
-                                        Download
+                                    <button className="user-friendly-button" onClick={() => downloadFile(record.Filename)}>
+                                        View
                                     </button>
                                 </td>
                             </tr>

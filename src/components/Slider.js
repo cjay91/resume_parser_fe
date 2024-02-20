@@ -5,15 +5,16 @@ import ImageUpload from './ImageUpload';
 
 const items = [
   {
-    key: '1',
-    label: 'Upload Candidate CVs',
-    children: <ImageUpload />,
-  },
-  {
     key: '2',
     label: 'Upload Job Description',
     children: <UploadOne />,
   },
+  {
+    key: '1',
+    label: 'Upload Candidate CVs',
+    children: <ImageUpload />,
+  },
+
 ];
 
 const App = () => {
