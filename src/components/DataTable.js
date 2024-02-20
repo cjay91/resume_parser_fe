@@ -50,6 +50,17 @@ const YourReactComponent = () => {
         }
     };
 
+    const handleChange= async(filename) =>{
+        var selected = [];
+
+
+        selected.push(filename);
+        console.log(selected)
+        
+        // do whatever you want with isChecked value
+      }
+      
+
     return (
         <div>
             <div className="upload-space"></div>
@@ -60,6 +71,7 @@ const YourReactComponent = () => {
                         <td>Rank</td>
                         <td>Filename</td>
                         <td>View PDF</td>
+                        <td>Shortlist CV</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,6 +85,9 @@ const YourReactComponent = () => {
                                     <button className="user-friendly-button" onClick={() => downloadFile(record.Filename)}>
                                         View
                                     </button>
+                                </td>
+                                <td>
+                                <input onClick={() => handleChange(record.Filename)} type="checkbox" value="Text" />
                                 </td>
                             </tr>
                         ))}
